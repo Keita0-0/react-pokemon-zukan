@@ -51,12 +51,13 @@ const PokemonList: React.FC = () => {
 
   return (
     <div className="p-4">
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 p-4">
-        {data.map((pokemon) => (
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {data?.pages.map((page) =>
+          page.results.map((pokemon: PokemonWithJapaneseName) => (
             <PokemonCard key={pokemon.name} pokemon={pokemon} />
-        ))}
-        </div>
-
+          ))
+        )}
+      </div>
       <div ref={loadMoreRef} className="h-20 flex items-center justify-center">
         {isFetchingNextPage ? <Loader /> : hasNextPage ? '続きを読み込む' : ''}
       </div>
